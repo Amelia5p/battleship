@@ -1,3 +1,7 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
+def get_user_name():
+    """
+    Ask for the players name and return it
+    """
+print("Welcome to Battleship! \n")    
+user_name= input("Please enter your name: \n")
+print(f"Hello {user_name}, enjoy the game!!\n")
