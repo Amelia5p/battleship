@@ -46,7 +46,7 @@ class Board:
         print()
 
 
-def ship_placement():
+def place_user_ship():
     """ Asks user what size they want their ship and what orientation 
     """
     while True:
@@ -82,6 +82,6 @@ def start_game():
     game_board.display_board(game_board.user_board)
     print('___COMPUTER BOARD:')
     game_board.display_board(game_board.computer_board)
-    ship_placement()
+    place_user_ship()
 
 start_game()
