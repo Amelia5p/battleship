@@ -47,26 +47,31 @@ class Board:
 
 
 def place_user_ship():
-    """ Asks user what size they want their ship and what orientation 
-    """
     while True:
         try:
             ship_size = int(input("What size do you want your ship? (1 to 5): "))
             if 1 <= ship_size <= 5:
                 print(f"Great choice, your ship size is {ship_size}!")
-                
+
                 while True:
                     orientation = input("Do you want to place your ship horizontally or vertically? (H/V): ").upper()
                     if orientation in ['H', 'V']:
                         print(f"Your ship will be placed {orientation}.")
-                        return ship_size, orientation
+
+                        while True:
+                            coordinates = input("Enter desired coordinates (e.g., A1, B5): ").upper()
+                            if len(coordinates) == 2 and coordinates[0] in 'ABCDEFGH' and coordinates[1] in '12345678':
+                                print(f"Your ship will be placed at {coordinates}.")
+                                return ship_size, orientation, coordinates
+                            else:
+                                print("Invalid input. Please enter coordinates in the format 'Letter (A-H) followed by Number (1-8)'.")
                     else:
                         print("Invalid input. Please enter 'H' for horizontal or 'V' for vertical.")
             else:
                 print("Please enter a number between 1 and 5.")
         except ValueError:
             print("Invalid input. Please enter a valid integer.")
-   
+
 
 
 
