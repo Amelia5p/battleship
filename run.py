@@ -12,12 +12,16 @@ scores= {"user":0 , "computer":0}
 class Board:
     
     """ A class to represent the game board for Battleship-
-    The size of the board- initializes the boards with a fixed size of 8x8.
+        Initialises default board sizes of 8 and 5 ships, has lists to store guesses and ships.
+        Boards are initialized with '~'.
+
     """
 
     def __init__(self):
-        self.board_size= board_size
+        self.board_size= 8
         self.user_board= [['~' for _ in range(8)] for _ in range(8)]
-        self.compuer_board= [['~' for _ in range(8)] for _ in range(8)]
-        
+        self.computer_board= [['~' for _ in range(8)] for _ in range(8)]
+        self.num_ships= 5
+        self.guesses=[]
+        self.ships=[]
         
