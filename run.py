@@ -29,7 +29,9 @@ class Board:
         self.computer_position=[]
 
     def display_board(self,board):
-        """ Display board format, iterate over each row and column in the board( print (1-8), get value of cell"""
+        """ Display board format, 
+            Iterate over each row and column in the board print (1-8)
+            Get value of cell"""
         
         print('   A B C D E F G H ')
         print( '   ***************')
@@ -44,19 +46,27 @@ class Board:
         print()
 
 
-def place_user_ships():
-    """ Asks user what size they want their ships, """
+def ship_placement():
+    """ Asks user what size they want their ship and what orientation 
+    """
     while True:
         try:
-            ship_size= int(input("What size do you want your ship? (1 to 5)"))
+            ship_size = int(input("What size do you want your ship? (1 to 5): "))
             if 1 <= ship_size <= 5:
                 print(f"Great choice, your ship size is {ship_size}!")
-                return ship_size
-            else: print("Please enter a number between 1 and 5")
+                
+                while True:
+                    orientation = input("Do you want to place your ship horizontally or vertically? (H/V): ").upper()
+                    if orientation in ['H', 'V']:
+                        print(f"Your ship will be placed {orientation}.")
+                        return ship_size, orientation
+                    else:
+                        print("Invalid input. Please enter 'H' for horizontal or 'V' for vertical.")
+            else:
+                print("Please enter a number between 1 and 5.")
         except ValueError:
             print("Invalid input. Please enter a valid integer.")
-
-
+   
 
 
 
@@ -72,6 +82,6 @@ def start_game():
     game_board.display_board(game_board.user_board)
     print('___COMPUTER BOARD:')
     game_board.display_board(game_board.computer_board)
-    place_user_ships()
+    ship_placement()
 
 start_game()
