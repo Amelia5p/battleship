@@ -47,6 +47,10 @@ class Board:
 
 
 def place_user_ship():
+    """
+    Ask user what size ship, what orientation and what coordinates they want.
+    Input validation implemented.
+    """
     while True:
         try:
             ship_size = int(input("What size do you want your ship? (1 to 5): "))
