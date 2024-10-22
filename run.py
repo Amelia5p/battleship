@@ -2,9 +2,9 @@ def get_user_name():
     """
     A function to ask for the users name
     """
-print("Welcome to Battleship! \n")    
-user_name= input("Please enter your name: \n")
-print(f"Hello {user_name}, enjoy the game!!\n")
+    print("Welcome to Battleship! \n")    
+    user_name= input("Please enter your name: \n")
+    print(f"Hello {user_name}, enjoy the game!!\n")
 
     
 # Initialise scores
@@ -29,7 +29,7 @@ class Board:
         self.computer_position=[]
 
     def display_board(self,board):
-        """ Display board format"""
+        """ Display board format, iterate over each row and column in the board( print (1-8), get value of cell"""
         
         print('   A B C D E F G H ')
         print( '   ***************')
@@ -42,5 +42,26 @@ class Board:
                 print(cell_value, end=' ')
             print()
         print()
-  
 
+
+def place_user_ships():
+    """ Asks user to place ships on their board """
+    print("Place 5 ships on your board using coordinates e.g A2, B4")
+
+
+
+
+
+
+
+
+
+def start_game():  
+    get_user_name()
+    game_board= Board()
+    print('___USER BOARD:')
+    game_board.display_board(game_board.user_board)
+    print('___COMPUTER BOARD:')
+    game_board.display_board(game_board.computer_board)
+
+start_game()

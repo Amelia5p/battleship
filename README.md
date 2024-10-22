@@ -30,3 +30,5 @@ The deployment terminal is set to 80 columns by 24 rows. That means that each li
 ---
 
 Happy coding!
+
+credits: YT video for formating board used some ideas > https://www.youtube.com/watch?v=cwpS_ac8uk0
