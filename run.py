@@ -45,8 +45,17 @@ class Board:
 
 
 def place_user_ships():
-    """ Asks user to place ships on their board """
-    print("Place 5 ships on your board using coordinates e.g A2, B4")
+    """ Asks user what size they want their ships, """
+    while True:
+        try:
+            ship_size= int(input("What size do you want your ship? (1 to 5)"))
+            if 1 <= ship_size <= 5:
+                print(f"Great choice, your ship size is {ship_size}!")
+                return ship_size
+            else: print("Please enter a number between 1 and 5")
+        except ValueError:
+            print("Invalid input. Please enter a valid integer.")
+
 
 
 
@@ -63,5 +72,6 @@ def start_game():
     game_board.display_board(game_board.user_board)
     print('___COMPUTER BOARD:')
     game_board.display_board(game_board.computer_board)
+    place_user_ships()
 
 start_game()
