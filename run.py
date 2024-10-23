@@ -67,7 +67,9 @@ def place_user_ship(game_board):
                             if len(coordinates) == 2 and coordinates[0] in 'ABCDEFGH' and coordinates[1] in '12345678':
                                 col = ord(coordinates[0]) - ord('A')
                                 row = int(coordinates[1]) - 1 
-                                print(f"Your ship will be placed at {coordinates}.")
+                                
+                                place_ship(game_board.user_board, ship_size, orientation, row, col)
+                                print(f"Your ship has been placed at {coordinates}.")
                                 return ship_size, orientation, coordinates
                             else:
                                 print("Invalid input. Please enter coordinates in the format 'Letter (A-H) followed by Number (1-8)'.")
