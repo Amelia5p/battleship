@@ -80,6 +80,7 @@ def place_user_ship(game_board):
                         if can_place_ship(game_board.user_board, ship_size, orientation, row, col):
                             place_ship(game_board.user_board, ship_size, orientation, row, col)
                             print(f"Your ship has been placed at {coordinates}.")
+                            game_board.user_positions.append((ship_size, orientation, row, col))
                             return ship_size, orientation, coordinates
                         else:
                             print("Cannot place ship here. It goes out of bounds or overlaps another ship.")
@@ -101,6 +102,7 @@ def place_ship(board, ship_size, orientation, start_row, start_col):
     elif orientation == "V":
         for i in range(ship_size):
             board[start_row + i][start_col] = 'S'
+    return (ship_size, orientation, start_row, start_col)
 
 
 def can_place_ship(board, ship_size, orientation, start_row, start_col):
@@ -121,7 +123,23 @@ def can_place_ship(board, ship_size, orientation, start_row, start_col):
 
 
 def place_computer_ship(game_board):
+    """ Randomly place computer ships on board """
     for _ in range(game_board.num_ships):
+        ship_size = randint(1, 5)
+        orientation = choice(['H', 'V'])
+
+        placed = False
+        while not placed:
+            row = randint(0, game_board.board_size - 1)
+            col = randint(0, game_board.board_size - 1)
+
+            if can_place_ship(game_board.computer_board, ship_size, orientation, row, col):
+                place_ship(game_board.computer_board, ship_size, orientation, row, col)
+                game_board.computer_positions.append((ship_size, orientation, row, col))
+                placed = True
+
+
+
 
 
 
@@ -139,6 +157,8 @@ def start_game():
         print('___USER BOARD AFTER PLACING SHIP:')
         game_board.display_board(game_board.user_board) 
     print("All ships have been placed!")
-
+    place_computer_ship(game_board)
+    print('___COMPUTER BOARD AFTER PLACING SHIPS:')
+    game_board.display_board(game_board.computer_board)
 
 start_game()
