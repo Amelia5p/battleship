@@ -1,3 +1,5 @@
+from random import randint
+
 def get_user_name():
     """
     A function to ask for the users name
@@ -118,7 +120,8 @@ def can_place_ship(board, ship_size, orientation, start_row, start_col):
     return True
 
 
-
+def place_computer_ship(game_board):
+    for _ in range(game_board.num_ships):
 
 
 
