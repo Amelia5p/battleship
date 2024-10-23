@@ -140,6 +140,29 @@ def place_computer_ship(game_board):
                 
 
 
+def user_guess(game_board):
+    """Allows user to guess a position on the computer's board"""
+    while True:
+        guess = input("Enter your guess (e.g., A1, B5): ").upper()
+
+        if len(guess) == 2 and guess[0] in 'ABCDEFGH' and guess[1] in '12345678':
+            col = ord(guess[0]) - ord('A')
+            row = int(guess[1]) - 1
+
+            if (row, col) in game_board.user_guesses:
+                print("You already guessed this location. Try again.")
+            else:
+                game_board.user_guesses.append((row, col))
+
+                if game_board.computer_board[row][col] == 'S':
+                    print("It's a hit!")
+                    game_board.computer_board[row][col] = 'X'
+                else:
+                    print("You missed.")
+                    game_board.computer_board[row][col] = 'O'
+                break
+        else:
+            print("Invalid input. Please enter coordinates in the format 'Letter (A-H) followed by Number (1-8)'.")
 
 
 
