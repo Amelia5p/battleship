@@ -1,4 +1,5 @@
-from random import randint
+from random import randint, choice
+
 
 def get_user_name():
     """
@@ -128,15 +129,15 @@ def place_computer_ship(game_board):
         ship_size = randint(1, 5)
         orientation = choice(['H', 'V'])
 
-        placed = False
-        while not placed:
+        while True:
             row = randint(0, game_board.board_size - 1)
             col = randint(0, game_board.board_size - 1)
 
             if can_place_ship(game_board.computer_board, ship_size, orientation, row, col):
                 place_ship(game_board.computer_board, ship_size, orientation, row, col)
                 game_board.computer_positions.append((ship_size, orientation, row, col))
-                placed = True
+                break
+                
 
 
 
@@ -158,7 +159,7 @@ def start_game():
         game_board.display_board(game_board.user_board) 
     print("All ships have been placed!")
     place_computer_ship(game_board)
-    print('___COMPUTER BOARD AFTER PLACING SHIPS:')
+    print('___COMPUTER BOARD (SHIPS ARE HIDDEN):')
     game_board.display_board(game_board.computer_board)
 
 start_game()
