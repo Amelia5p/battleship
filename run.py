@@ -116,16 +116,21 @@ def can_place_ship(board, ship_size, orientation, start_row, start_col):
 
 
 
+
 def start_game():  
     get_user_name()
-    game_board= Board()
+    game_board = Board()
     print('___USER BOARD:')
     game_board.display_board(game_board.user_board)
     print('___COMPUTER BOARD:')
     game_board.display_board(game_board.computer_board)
+    
+    # loop allowing user to place ships only 5 times (num_ships)
     for _ in range(game_board.num_ships):
         place_user_ship(game_board)
-    
-    
+        print('___USER BOARD AFTER PLACING SHIP:')
+        game_board.display_board(game_board.user_board) 
+    print("All ships have been placed!")
+
 
 start_game()

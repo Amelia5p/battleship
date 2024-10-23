@@ -36,3 +36,7 @@ credits: YT video for formating board used some ideas > https://www.youtube.com/
 
 BUGS:
 The code board[start_row][start_col + 'i'] has an issue because 'i' should not be in quotes. It is a variable, so simply write start_col + i.
+
+after user chooses ship places it wasnt placing 'S' on board to show where ships are >> fixed this by mofifyng  start game function = game_board.display_board(game_board.user_board)
+
+the game was asking if user wanted h/v when user picked 1 which is unnecessary, fixed this by: 
