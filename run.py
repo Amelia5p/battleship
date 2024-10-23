@@ -57,27 +57,32 @@ def place_user_ship(game_board):
             if 1 <= ship_size <= 5:
                 print(f"Great choice, your ship size is {ship_size}!")
 
+                if ship_size == 1:
+                    orientation = 'H'
+                    print("Since your ship size is 1, orientation is not necessary")
+                else:
+                    while True:
+                        orientation = input("Do you want to place your ship horizontally or vertically? (H/V): ").upper()
+                        if orientation in ['H', 'V']:
+                            print(f"Your ship will be placed {orientation}.")
+                            break
+                        else:
+                            print("Invalid input. Please enter 'H' for horizontal or 'V' for vertical.")
+
                 while True:
-                    orientation = input("Do you want to place your ship horizontally or vertically? (H/V): ").upper()
-                    if orientation in ['H', 'V']:
-                        print(f"Your ship will be placed {orientation}.")
+                    coordinates = input("Enter desired coordinates (e.g., A1, B5): ").upper()
+                    if len(coordinates) == 2 and coordinates[0] in 'ABCDEFGH' and coordinates[1] in '12345678':
+                        col = ord(coordinates[0]) - ord('A')
+                        row = int(coordinates[1]) - 1 
 
-                        while True:
-                            coordinates = input("Enter desired coordinates (e.g., A1, B5): ").upper()
-                            if len(coordinates) == 2 and coordinates[0] in 'ABCDEFGH' and coordinates[1] in '12345678':
-                                col = ord(coordinates[0]) - ord('A')
-                                row = int(coordinates[1]) - 1 
-
-                                if can_place_ship(game_board.user_board, ship_size, orientation, row, col):
-                                    place_ship(game_board.user_board, ship_size, orientation, row, col)
-                                    print(f"Your ship has been placed at {coordinates}.")
-                                    return ship_size, orientation, coordinates
-                                else:
-                                    print("Cannot place ship here. It goes out of bounds or overlaps another ship.")
-                            else:
-                                print("Invalid input. Please enter coordinates in the format 'Letter (A-H) followed by Number (1-8)'.")
+                        if can_place_ship(game_board.user_board, ship_size, orientation, row, col):
+                            place_ship(game_board.user_board, ship_size, orientation, row, col)
+                            print(f"Your ship has been placed at {coordinates}.")
+                            return ship_size, orientation, coordinates
+                        else:
+                            print("Cannot place ship here. It goes out of bounds or overlaps another ship.")
                     else:
-                        print("Invalid input. Please enter 'H' for horizontal or 'V' for vertical.")
+                        print("Invalid input. Please enter coordinates in the format 'Letter (A-H) followed by Number (1-8)'.")
             else:
                 print("Please enter a number between 1 and 5.")
         except ValueError:
