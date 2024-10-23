@@ -78,7 +78,16 @@ def place_user_ship():
 
 
 
-
+def place_ship(self, board, ship_size, orientation, start_row, start_col):
+    """ Place a ship on the board based on what the user chooses, store positions """
+    if orientation == 'H':
+        for i in range(ship_size):
+            board[start_row][start_col + 'i']= 'S'
+            self.user_ships.append((start_row, start_col + i))
+    elif orientation == "V":
+        for i in range(ship_size):
+            board[start_row + i][start_col] = 'S'
+            self.user_ships.append((start_row + i, start_col))
 
 
 
