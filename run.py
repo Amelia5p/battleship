@@ -48,7 +48,7 @@ class Board:
 
 def place_user_ship(game_board):
     """
-    Ask user what size ship, what orientation and what coordinates they want.
+    Ask user what size ship, what orientation, and what coordinates they want.
     Input validation implemented.
     """
     while True:
@@ -67,10 +67,13 @@ def place_user_ship(game_board):
                             if len(coordinates) == 2 and coordinates[0] in 'ABCDEFGH' and coordinates[1] in '12345678':
                                 col = ord(coordinates[0]) - ord('A')
                                 row = int(coordinates[1]) - 1 
-                                
-                                place_ship(game_board.user_board, ship_size, orientation, row, col)
-                                print(f"Your ship has been placed at {coordinates}.")
-                                return ship_size, orientation, coordinates
+
+                                if can_place_ship(game_board.user_board, ship_size, orientation, row, col):
+                                    place_ship(game_board.user_board, ship_size, orientation, row, col)
+                                    print(f"Your ship has been placed at {coordinates}.")
+                                    return ship_size, orientation, coordinates
+                                else:
+                                    print("Cannot place ship here. It goes out of bounds or overlaps another ship.")
                             else:
                                 print("Invalid input. Please enter coordinates in the format 'Letter (A-H) followed by Number (1-8)'.")
                     else:
@@ -82,16 +85,32 @@ def place_user_ship(game_board):
 
 
 
-def place_ship(self, board, ship_size, orientation, start_row, start_col):
-    """ Place a ship on the board based on what the user chooses, store positions """
+
+def place_ship(board, ship_size, orientation, start_row, start_col):
+    """ Place a ship on the board based on what the user chooses. """
     if orientation == 'H':
         for i in range(ship_size):
-            board[start_row][start_col + i]= 'S'
-            self.user_ships.append((start_row, start_col + i))
+            board[start_row][start_col + i] = 'S'
     elif orientation == "V":
         for i in range(ship_size):
             board[start_row + i][start_col] = 'S'
-            self.user_ships.append((start_row + i, start_col))
+
+
+def can_place_ship(board, ship_size, orientation, start_row, start_col):
+    """ Checks if ship can be placed without overlapping """
+    if orientation == 'H':
+        if start_col + ship_size > len(board[0]):
+            return False
+        for i in range(ship_size):
+            if board[start_row][start_col + i] != '~':
+                return False
+    elif orientation == "V":
+        if start_row + ship_size > len(board):
+            return False
+        for i in range(ship_size):
+            if board[start_row + i][start_col] != '~':
+                return False
+    return True
 
 
 
@@ -104,7 +123,6 @@ def start_game():
     game_board.display_board(game_board.user_board)
     print('___COMPUTER BOARD:')
     game_board.display_board(game_board.computer_board)
-    place_user_ship(game_board)
     for _ in range(game_board.num_ships):
         place_user_ship(game_board)
     
