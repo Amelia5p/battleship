@@ -23,10 +23,10 @@ class Board:
         self.user_board= [['~' for _ in range(8)] for _ in range(8)]
         self.computer_board= [['~' for _ in range(8)] for _ in range(8)]
         self.num_ships= 5
-        self.guesses=[]
-        self.ships=[]
-        self.user_position=[]
-        self.computer_position=[]
+        self.user_positions=[]
+        self.user_guesses=[]
+        self.computer_positions=[]
+        self.computer_guesses=[]
 
     def display_board(self,board):
         """ Display board format, 
@@ -46,7 +46,7 @@ class Board:
         print()
 
 
-def place_user_ship():
+def place_user_ship(game_board):
     """
     Ask user what size ship, what orientation and what coordinates they want.
     Input validation implemented.
@@ -65,6 +65,8 @@ def place_user_ship():
                         while True:
                             coordinates = input("Enter desired coordinates (e.g., A1, B5): ").upper()
                             if len(coordinates) == 2 and coordinates[0] in 'ABCDEFGH' and coordinates[1] in '12345678':
+                                col = ord(coordinates[0]) - ord('A')
+                                row = int(coordinates[1]) - 1 
                                 print(f"Your ship will be placed at {coordinates}.")
                                 return ship_size, orientation, coordinates
                             else:
@@ -82,7 +84,7 @@ def place_ship(self, board, ship_size, orientation, start_row, start_col):
     """ Place a ship on the board based on what the user chooses, store positions """
     if orientation == 'H':
         for i in range(ship_size):
-            board[start_row][start_col + 'i']= 'S'
+            board[start_row][start_col + i]= 'S'
             self.user_ships.append((start_row, start_col + i))
     elif orientation == "V":
         for i in range(ship_size):
@@ -100,6 +102,10 @@ def start_game():
     game_board.display_board(game_board.user_board)
     print('___COMPUTER BOARD:')
     game_board.display_board(game_board.computer_board)
-    place_user_ship()
+    place_user_ship(game_board)
+    for _ in range(game_board.num_ships):
+        place_user_ship(game_board)
+    
+    
 
 start_game()

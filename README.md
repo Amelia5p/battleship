@@ -32,3 +32,7 @@ The deployment terminal is set to 80 columns by 24 rows. That means that each li
 Happy coding!
 
 credits: YT video for formating board used some ideas > https://www.youtube.com/watch?v=cwpS_ac8uk0
+
+
+BUGS:
+The code board[start_row][start_col + 'i'] has an issue because 'i' should not be in quotes. It is a variable, so simply write start_col + i.
