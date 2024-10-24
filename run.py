@@ -134,23 +134,22 @@ def can_place_ship(board, ship_size, orientation, start_row, start_col):
     return True
 
 
-def place_computer_ship(game_board):
-    """ Randomly place computer ships on board """
-    for _ in range(game_board.num_ships):
-        ship_size = randint(1, 5)
-        while ship_size in game_board.computer_selected_sizes:
-            ship_size = randint(1, 5)
+def place_computer_ship(game_board, available_sizes):
+    """ Randomly places computer ships """
+    for ship_size in available_sizes:
+        placed = False
         
-        orientation = choice(['H', 'V'])
-
-        while True:
+        while not placed:
+            orientation = choice(['H', 'V'])
             row = randint(0, game_board.board_size - 1)
             col = randint(0, game_board.board_size - 1)
 
             if can_place_ship(game_board.computer_board, ship_size, orientation, row, col):
                 place_ship(game_board.computer_board, ship_size, orientation, row, col)
                 game_board.computer_positions.append((ship_size, orientation, row, col))
-                break
+                placed = True
+                print(f"Computer placed a ship of size {ship_size} at ({row+1}, {col+1}) with orientation {orientation}.")
+
                 
 
 
@@ -172,7 +171,7 @@ def user_guess(game_board):
                     print("It's a hit!")
                     game_board.computer_board[row][col] = 'X'
                 else:
-                    print("You missed!).")
+                    print("You missed!")
                     game_board.computer_board[row][col] = 'O'
                 break
         else:
@@ -192,9 +191,9 @@ def computer_guess(game_board):
                 print("The computer has hit your ship")
                 game_board.user_board[row][col] = 'X'
             
-            else: game_board.user_board[row][col] == '~'
-            print('The computer has missed')
-            game_board.user_board[row][col] = 'O'
+            else: 
+                print('The computer has missed')
+                game_board.user_board[row][col] = 'O'
             break
         else: 
             continue
@@ -235,7 +234,8 @@ def start_game():
         game_board.display_board(game_board.user_board) 
     print("All ships have been placed!")
     
-    place_computer_ship(game_board)
+  
+    place_computer_ship(game_board, available_sizes)
 
     while True:
        
@@ -246,10 +246,11 @@ def start_game():
         game_board.display_board(game_board.computer_board, is_computer=True)
         user_guess(game_board)
         
-        if check_winner(game_board):
-            print(check_winner(game_board))
-            input("Press Enter to exit...")
-            break
+    winner = check_winner(game_board)
+    if winner:
+        print(winner)
+        input("Press Enter to exit...")
+        break    
 
         input("Press Enter to continue to the computer's turn...")
 
