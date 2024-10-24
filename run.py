@@ -211,6 +211,9 @@ def check_winner(game_board):
         return "Congratulations! You have sunk all of the computer's ships"
     return None 
 
+def clear_console():
+    """ Clears console """
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 
@@ -231,26 +234,35 @@ def start_game():
     print("All ships have been placed!")
     
     place_computer_ship(game_board)
+
+    print('___FINAL USER BOARD:')
+    game_board.display_board(game_board.user_board) 
     
     print('___COMPUTER BOARD (SHIPS ARE HIDDEN):')
     game_board.display_board(game_board.computer_board, is_computer=True)
     
     while True:
+        clear_console()
         user_guess(game_board)
         print('___COMPUTER BOARD AFTER USER GUESS:')
         game_board.display_board(game_board.computer_board, is_computer=True)
         
         if check_winner(game_board):
             print(check_winner(game_board))
+            input("Press Enter to exit...")
             break
-        
+
+        input("Press Enter to continue to the computer's turn...")
+        clear_console()
         computer_guess(game_board)
         print('___USER BOARD AFTER COMPUTER GUESS:')
         game_board.display_board(game_board.user_board)
 
         if check_winner(game_board):
             print(check_winner(game_board))
+            input("Press Enter to exit...")
             break
+        input("Press Enter for your next guess...")
 
 start_game()
 
