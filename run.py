@@ -190,6 +190,16 @@ def computer_guess(game_board):
             continue
 
 
+def check_winner(game_board):
+    """ Checks if either player has lost all of their ships"""
+    user_ships_remaining= sum(row.count('S') for row in game_board.user_board)
+    computer_ships_remaining= sum(row.count('S') for row in game_board.computer_board)
+        
+    if user_ships_remaining == 0:
+        return "Computer has sunk all of your ships"
+    elif computer_ships_remaining== 0:
+        return "Congratulations! You have sunk all of the computer's ships"
+    return None 
 
 
 
