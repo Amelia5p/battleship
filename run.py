@@ -30,6 +30,8 @@ class Board:
         self.user_guesses=[]
         self.computer_positions=[]
         self.computer_guesses=[]
+        self.user_selected_sizes = []
+        self.computer_selected_sizes=[]
 
     def display_board(self,board, is_computer=False) :
         """ Display board format, 
@@ -64,6 +66,9 @@ def place_user_ship(game_board, available_sizes):
             ship_size = int(input("What size do you want your ship? (1 to 5): "))
             if ship_size in available_sizes:
                 print(f"Great choice, your ship size is {ship_size}!")
+                game_board.user_selected_sizes.append(ship_size)
+
+                available_sizes.remove(ship_size)
 
                 if ship_size == 1:
                     orientation = 'H'
@@ -93,7 +98,7 @@ def place_user_ship(game_board, available_sizes):
                     else:
                         print("Invalid input. Please enter coordinates in the format 'Letter (A-H) followed by Number (1-8)'.")
             else:
-                print("Please enter a number between 1 and 5.")
+                print('You have already chosen this size. Please enter an available ship size.')
         except ValueError:
             print("Invalid input. Please enter a valid integer.")
 
@@ -132,6 +137,9 @@ def place_computer_ship(game_board):
     """ Randomly place computer ships on board """
     for _ in range(game_board.num_ships):
         ship_size = randint(1, 5)
+        while ship_size in game_board.computer_selected_sizes:
+            ship_size = randint(1, 5)
+        
         orientation = choice(['H', 'V'])
 
         while True:
@@ -163,7 +171,7 @@ def user_guess(game_board):
                     print("It's a hit!")
                     game_board.computer_board[row][col] = 'X'
                 else:
-                    print("You missed.")
+                    print("You missed!).")
                     game_board.computer_board[row][col] = 'O'
                 break
         else:
@@ -180,11 +188,11 @@ def computer_guess(game_board):
             game_board.computer_guesses.append((row, col))
 
             if game_board.user_board[row][col] == 'S':
-                print("The computer has hit your ship :()")
+                print("The computer has hit your ship")
                 game_board.user_board[row][col] = 'X'
             
             else: game_board.user_board[row][col] == '~'
-            print('The computer has missed :)')
+            print('The computer has missed')
             game_board.user_board[row][col]= '0'
             break
         else: 
@@ -197,7 +205,7 @@ def check_winner(game_board):
     computer_ships_remaining= sum(row.count('S') for row in game_board.computer_board)
         
     if user_ships_remaining == 0:
-        return "Computer has sunk all of your ships"
+        return "The computer has sunk all of your ships"
     elif computer_ships_remaining== 0:
         return "Congratulations! You have sunk all of the computer's ships"
     return None 
