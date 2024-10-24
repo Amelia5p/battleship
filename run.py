@@ -46,7 +46,7 @@ class Board:
                 cell_value= board[row_num][col_num] 
 
                 if is_computer and cell_value == 'S':
-                    print('~', end='') #This will hide ships with '~'
+                    print('~', end=' ')  # Display water symbol #This will hide ships with '~'
                 else: 
                     print(cell_value, end=' ')
             print()
@@ -167,6 +167,29 @@ def user_guess(game_board):
                 break
         else:
             print("Invalid input. Please enter coordinates in the format 'Letter (A-H) followed by Number (1-8)'.")
+
+
+def computer_guess(game_board):
+    """ Allows computer to guess a random position on the computer's board """
+    while True:
+        row= randint(0, game_board.board_size -1)
+        col= randint(0, game_board.board_size -1)
+
+        if (row,col) not in game_board.computer_guesses:
+            game_board.computer_guesses.append((row, col))
+
+            if game_board.user_board[row][col] == 'S':
+                print("The computer has hit your ship :()")
+                game_board.user_board[row][col] = 'X'
+            
+            else: game_board.user_board[row][col] == '~'
+            print('The computer has missed :)')
+            game_board.user_board[row][col]= '0'
+            break
+        else: 
+            continue
+
+
 
 
 
