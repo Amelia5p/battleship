@@ -5,13 +5,13 @@ def get_user_name():
     """
     A function to ask for the users name
     """
-    print("Welcome to Battleship! \n")    
-    user_name= input("Please enter your name: \n")
+    print("Welcome to Battleship! \n")
+    user_name = input("Please enter your name: \n")
     print(f"Hello {user_name}, enjoy the game!!\n")
 
-    
+
 # Initialise scores
-scores= {"user":0 , "computer":0}
+scores = {"user":0 , "computer":0}
 
 class Board:
     
@@ -53,15 +53,16 @@ class Board:
         print()
 
 
-def place_user_ship(game_board):
+def place_user_ship(game_board, available_sizes):
     """
     Ask user what size ship, what orientation, and what coordinates they want.
     Input validation implemented.
     """
     while True:
         try:
+            print(f"Available ship sizes: {available_sizes}")
             ship_size = int(input("What size do you want your ship? (1 to 5): "))
-            if 1 <= ship_size <= 5:
+            if ship_size in available_sizes:
                 print(f"Great choice, your ship size is {ship_size}!")
 
                 if ship_size == 1:
@@ -207,26 +208,40 @@ def check_winner(game_board):
 def start_game():  
     get_user_name()
     game_board = Board()
+    
+    available_sizes = [1, 2, 3, 4, 5]
+
     print('___USER BOARD:')
     game_board.display_board(game_board.user_board)
     print('___COMPUTER BOARD:')
     
-    game_board.display_board(game_board.computer_board, is_computer=True)
-    
-    # loop allowing user to place ships only 5 times (num_ships)
-    for _ in range(game_board.num_ships):
-        place_user_ship(game_board)
+    for _ in range(len(available_sizes)):
+        place_user_ship(game_board, available_sizes)
         print('___USER BOARD AFTER PLACING SHIP:')
         game_board.display_board(game_board.user_board) 
     print("All ships have been placed!")
+    
     place_computer_ship(game_board)
     
     print('___COMPUTER BOARD (SHIPS ARE HIDDEN):')
     game_board.display_board(game_board.computer_board, is_computer=True)
     
-    user_guess(game_board)
-    
-    print('___COMPUTER BOARD AFTER GUESS:')
-    game_board.display_board(game_board.computer_board, is_computer=True)
+    while True:
+        user_guess(game_board)
+        print('___COMPUTER BOARD AFTER USER GUESS:')
+        game_board.display_board(game_board.computer_board, is_computer=True)
+        
+        if check_winner(game_board):
+            print(check_winner(game_board))
+            break
+        
+        computer_guess(game_board)
+        print('___USER BOARD AFTER COMPUTER GUESS:')
+        game_board.display_board(game_board.user_board)
+
+        if check_winner(game_board):
+            print(check_winner(game_board))
+            break
 
 start_game()
+
