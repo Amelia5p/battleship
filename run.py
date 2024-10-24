@@ -194,7 +194,7 @@ def computer_guess(game_board):
             
             else: game_board.user_board[row][col] == '~'
             print('The computer has missed')
-            game_board.user_board[row][col]= '0'
+            game_board.user_board[row][col] = 'O'
             break
         else: 
             continue
@@ -225,53 +225,47 @@ def start_game():
 
     print('___USER BOARD:')
     game_board.display_board(game_board.user_board)
-    print('___COMPUTER BOARD:')
+    
+    print('___COMP BOARD:')
+    game_board.display_board(game_board.computer_board)
     
     for _ in range(len(available_sizes)):
         place_user_ship(game_board, available_sizes)
         print('___USER BOARD AFTER PLACING SHIP:')
         game_board.display_board(game_board.user_board) 
-        
     print("All ships have been placed!")
     
-    print('___FINAL USER BOARD:')
-    game_board.display_board(game_board.user_board) 
-    
     place_computer_ship(game_board)
-    
-    print('___COMPUTER BOARD (SHIPS ARE HIDDEN):')
-    game_board.display_board(game_board.computer_board, is_computer=True)
 
     while True:
-        clear_console()
-        print('___USER BOARD:')
-        game_board.display_board(game_board.user_board)
-        print('___COMPUTER BOARD (SHIPS ARE HIDDEN):')
-        game_board.display_board(game_board.computer_board, is_computer=True)
+       
+        print('___USER TURN___')
+      
         
-        user_guess(game_board)
         print('___COMPUTER BOARD AFTER USER GUESS:')
         game_board.display_board(game_board.computer_board, is_computer=True)
-
+        user_guess(game_board)
+        
         if check_winner(game_board):
             print(check_winner(game_board))
             input("Press Enter to exit...")
             break
-        
+
         input("Press Enter to continue to the computer's turn...")
-        clear_console()
+
         
+        print('___COMPUTER TURN___')
         computer_guess(game_board)
+        
+      
+        
         print('___USER BOARD AFTER COMPUTER GUESS:')
         game_board.display_board(game_board.user_board)
 
         if check_winner(game_board):
             print(check_winner(game_board))
             input("Press Enter to exit...")
-            break 
-
-        input("Press Enter for your next guess...")
-
+            break
 
 start_game()
 
