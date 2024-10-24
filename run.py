@@ -31,10 +31,10 @@ class Board:
         self.computer_positions=[]
         self.computer_guesses=[]
 
-    def display_board(self,board):
+    def display_board(self,board, is_computer=False) :
         """ Display board format, 
             Iterate over each row and column in the board print (1-8)
-            Get value of cell"""
+            Hides ships if it is the computers board"""
         
         print('   A B C D E F G H ')
         print( '   ***************')
@@ -44,7 +44,11 @@ class Board:
 
             for col_num in range(self.board_size):
                 cell_value= board[row_num][col_num] 
-                print(cell_value, end=' ')
+
+                if is_computer and cell_value == 'S':
+                    print('~', end='') #This will hide ships with '~'
+                else: 
+                    print(cell_value, end=' ')
             print()
         print()
 
@@ -173,7 +177,8 @@ def start_game():
     print('___USER BOARD:')
     game_board.display_board(game_board.user_board)
     print('___COMPUTER BOARD:')
-    game_board.display_board(game_board.computer_board)
+    
+    game_board.display_board(game_board.computer_board, is_computer=True)
     
     # loop allowing user to place ships only 5 times (num_ships)
     for _ in range(game_board.num_ships):
@@ -182,7 +187,13 @@ def start_game():
         game_board.display_board(game_board.user_board) 
     print("All ships have been placed!")
     place_computer_ship(game_board)
+    
     print('___COMPUTER BOARD (SHIPS ARE HIDDEN):')
-    game_board.display_board(game_board.computer_board)
+    game_board.display_board(game_board.computer_board, is_computer=True)
+    
+    user_guess(game_board)
+    
+    print('___COMPUTER BOARD AFTER GUESS:')
+    game_board.display_board(game_board.computer_board, is_computer=True)
 
 start_game()
