@@ -1,4 +1,5 @@
 from random import randint, choice
+import os
 
 
 def get_user_name():
