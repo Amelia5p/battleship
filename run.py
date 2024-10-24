@@ -231,29 +231,36 @@ def start_game():
         place_user_ship(game_board, available_sizes)
         print('___USER BOARD AFTER PLACING SHIP:')
         game_board.display_board(game_board.user_board) 
+        
     print("All ships have been placed!")
     
-    place_computer_ship(game_board)
-
     print('___FINAL USER BOARD:')
     game_board.display_board(game_board.user_board) 
     
+    place_computer_ship(game_board)
+    
     print('___COMPUTER BOARD (SHIPS ARE HIDDEN):')
     game_board.display_board(game_board.computer_board, is_computer=True)
-    
+
     while True:
         clear_console()
+        print('___USER BOARD:')
+        game_board.display_board(game_board.user_board)
+        print('___COMPUTER BOARD (SHIPS ARE HIDDEN):')
+        game_board.display_board(game_board.computer_board, is_computer=True)
+        
         user_guess(game_board)
         print('___COMPUTER BOARD AFTER USER GUESS:')
         game_board.display_board(game_board.computer_board, is_computer=True)
-        
+
         if check_winner(game_board):
             print(check_winner(game_board))
             input("Press Enter to exit...")
             break
-
+        
         input("Press Enter to continue to the computer's turn...")
         clear_console()
+        
         computer_guess(game_board)
         print('___USER BOARD AFTER COMPUTER GUESS:')
         game_board.display_board(game_board.user_board)
@@ -261,8 +268,10 @@ def start_game():
         if check_winner(game_board):
             print(check_winner(game_board))
             input("Press Enter to exit...")
-            break
+            break 
+
         input("Press Enter for your next guess...")
+
 
 start_game()
 
