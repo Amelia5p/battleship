@@ -68,7 +68,7 @@ def place_user_ship(game_board, available_sizes):
             # Display available ship sizes for user selection
             print(f"Available ship sizes: {available_sizes}")
               # Prompt user to select ship size (1 to 5)
-            ship_size = int(input("What size do you want your ship? (1 to 5): "))
+            ship_size = int(input("What size do you want your ship? (1 to 5):\n "))
             if ship_size in available_sizes:
                 print(f"Great choice, your ship size is {ship_size}!")
                 # Add chosen ship size to user's selected sizes and remove it from available sizes
@@ -81,7 +81,7 @@ def place_user_ship(game_board, available_sizes):
                     print("Since your ship size is 1, orientation is not necessary")
                 else:
                     while True:
-                        orientation = input("Do you want to place your ship horizontally or vertically? (H/V): ").upper()
+                        orientation = input("Do you want to place your ship horizontally or vertically? (H/V):\n ").upper()
                         # Validate orientation input
                         if orientation in ['H', 'V']:
                             print(f"Your ship will be placed {orientation}.")
@@ -90,7 +90,7 @@ def place_user_ship(game_board, available_sizes):
                             print("Invalid input. Please enter 'H' for horizontal or 'V' for vertical.")
 
                 while True:
-                    coordinates = input("Enter desired coordinates (e.g., A1, B5): ").upper()
+                    coordinates = input("Enter desired coordinates (e.g., A1, B5):\n ").upper()
                     # Validate that coordinates follow correct format and fall within board limits
                     if len(coordinates) == 2 and coordinates[0] in 'ABCDEFGH' and coordinates[1] in '12345678':
                         col = ord(coordinates[0]) - ord('A')
@@ -172,7 +172,6 @@ def place_computer_ship(game_board, computer_available_sizes):
             if can_place_ship(game_board.computer_board, ship_size, orientation, row, col):
                 place_ship(game_board.computer_board, ship_size, orientation, row, col)
                 game_board.computer_positions.append((ship_size, orientation, row, col))
-                print(f"Computer ship has been placed at {coordinates}.")
                 return ship_size, orientation, (row, col)
 
 
@@ -183,7 +182,7 @@ def user_guess(game_board):
     """Allows user to guess a position on the computer's board"""
     # Infinite loop to keep asking for user input until a valid guess is made
     while True:
-        guess = input("Enter your guess (e.g., A1, B5): ").upper()
+        guess = input("Enter your guess (e.g., A1, B5):\n ").upper()
         # Validate the guess format (should be two characters: a letter and a number)
         if len(guess) == 2 and guess[0] in 'ABCDEFGH' and guess[1] in '12345678':
             # Convert the letter (column) to an index (0-7)
@@ -259,7 +258,7 @@ def start_game():
 
     print('___USER BOARD:')
     game_board.display_board(game_board.user_board)
-    print('___COMPUTER BOARD:')
+   
     
     # Loop to allow user to place their ships
     for _ in range(len(available_sizes)):
@@ -272,21 +271,31 @@ def start_game():
     for _ in range(len(computer_available_sizes)):
         place_computer_ship(game_board, computer_available_sizes)
     print("All computer ships have been placed!")
-    print('___COMPUTER BOARD (SHIPS ARE HIDDEN):')
-    game_board.display_board(game_board.computer_board, is_computer=True)
+    
+    
     
     while True:
+       
+        print('___COMPUTER BOARD:')
+        print("\n")
+        game_board.display_board(game_board.computer_board, is_computer=True)
         user_guess(game_board)
         print('___COMPUTER BOARD AFTER USER GUESS:')
         game_board.display_board(game_board.computer_board, is_computer=True)
         
         if check_winner(game_board):
+            print("\n")
             print(check_winner(game_board))
             break
+
+        
+            
         
         computer_guess(game_board)
         print('___USER BOARD AFTER COMPUTER GUESS:')
         game_board.display_board(game_board.user_board)
+
+      
 
         if check_winner(game_board):
             print(check_winner(game_board))
