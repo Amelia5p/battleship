@@ -1,3 +1,4 @@
+import random
 from random import randint, choice
 import os
 
@@ -10,9 +11,6 @@ def get_user_name():
     user_name = input("Please enter your name: \n")
     print(f"Hello {user_name}, enjoy the game!!\n")
 
-
-# Initialise scores
-scores = {"user":0 , "computer":0}
 
 class Board:
     
@@ -63,20 +61,24 @@ def place_user_ship(game_board, available_sizes):
     """
     while True:
         try:
+            # Display available ship sizes for user selection
             print(f"Available ship sizes: {available_sizes}")
+              # Prompt user to select ship size (1 to 5)
             ship_size = int(input("What size do you want your ship? (1 to 5): "))
             if ship_size in available_sizes:
                 print(f"Great choice, your ship size is {ship_size}!")
+                # Add chosen ship size to user's selected sizes and remove it from available sizes
                 game_board.user_selected_sizes.append(ship_size)
-
                 available_sizes.remove(ship_size)
 
+                # Set orientation automatically if ship size is 1 (no orientation needed)
                 if ship_size == 1:
                     orientation = 'H'
                     print("Since your ship size is 1, orientation is not necessary")
                 else:
                     while True:
                         orientation = input("Do you want to place your ship horizontally or vertically? (H/V): ").upper()
+                        # Validate orientation input
                         if orientation in ['H', 'V']:
                             print(f"Your ship will be placed {orientation}.")
                             break
@@ -85,14 +87,17 @@ def place_user_ship(game_board, available_sizes):
 
                 while True:
                     coordinates = input("Enter desired coordinates (e.g., A1, B5): ").upper()
+                    # Validate that coordinates follow correct format and fall within board limits
                     if len(coordinates) == 2 and coordinates[0] in 'ABCDEFGH' and coordinates[1] in '12345678':
                         col = ord(coordinates[0]) - ord('A')
                         row = int(coordinates[1]) - 1 
-
+                        
+                        # Check if the chosen location can accommodate the ship
                         if can_place_ship(game_board.user_board, ship_size, orientation, row, col):
                             place_ship(game_board.user_board, ship_size, orientation, row, col)
                             print(f"Your ship has been placed at {coordinates}.")
                             game_board.user_positions.append((ship_size, orientation, row, col))
+                            # Return the details of the placed ship
                             return ship_size, orientation, coordinates
                         else:
                             print("Cannot place ship here. It goes out of bounds or overlaps another ship.")
@@ -134,21 +139,33 @@ def can_place_ship(board, ship_size, orientation, start_row, start_col):
     return True
 
 
-def place_computer_ship(game_board, available_sizes):
-    """ Randomly places computer ships """
-    for ship_size in available_sizes:
-        placed = False
-        
-        while not placed:
-            orientation = choice(['H', 'V'])
-            row = randint(0, game_board.board_size - 1)
-            col = randint(0, game_board.board_size - 1)
 
+def place_computer_ship(game_board, computer_available_sizes):
+    """
+    Randomly selects ship size, orientation, and coordinates for the computer.
+    Ensures that ships are placed within bounds and do not overlap.
+    """
+    while True:
+        # Randomly pick a ship size from available sizes
+        ship_size = random.choice(computer_available_sizes)
+        game_board.computer_selected_sizes.append(ship_size)
+        computer_available_sizes.remove(ship_size)
+        
+        # Randomly decide orientation
+        orientation = 'H' if ship_size == 1 else random.choice(['H', 'V'])
+        
+        # Generate random starting coordinates
+        while True:
+            row = random.randint(0, game_board.board_size - 1)
+            col = random.randint(0, game_board.board_size - 1)
+            
+            # Check if ship can be placed at the selected coordinates
             if can_place_ship(game_board.computer_board, ship_size, orientation, row, col):
                 place_ship(game_board.computer_board, ship_size, orientation, row, col)
                 game_board.computer_positions.append((ship_size, orientation, row, col))
-                placed = True
-                print(f"Computer placed a ship of size {ship_size} at ({row+1}, {col+1}) with orientation {orientation}.")
+                print(f"Computer placed ship of size {ship_size} at ({row}, {col}) with orientation {orientation}.")
+                return ship_size, orientation, (row, col)
+
 
                 
 
@@ -169,13 +186,14 @@ def user_guess(game_board):
 
                 if game_board.computer_board[row][col] == 'S':
                     print("It's a hit!")
-                    game_board.computer_board[row][col] = 'X'
+                    game_board.computer_board[row][col] = 'X' 
                 else:
                     print("You missed!")
-                    game_board.computer_board[row][col] = 'O'
+                    game_board.computer_board[row][col] = 'O'  
                 break
         else:
             print("Invalid input. Please enter coordinates in the format 'Letter (A-H) followed by Number (1-8)'.")
+
 
 
 def computer_guess(game_board):
@@ -195,25 +213,24 @@ def computer_guess(game_board):
                 print('The computer has missed')
                 game_board.user_board[row][col] = 'O'
             break
-        else: 
-            continue
+        
 
 
 def check_winner(game_board):
-    """ Checks if either player has lost all of their ships"""
-    user_ships_remaining= sum(row.count('S') for row in game_board.user_board)
-    computer_ships_remaining= sum(row.count('S') for row in game_board.computer_board)
-        
+    """ Checks if either player has lost all of their ships """
+    user_ships_remaining = sum(row.count('S') for row in game_board.user_board)
+    computer_ships_remaining = sum(row.count('S') for row in game_board.computer_board)
+
+
     if user_ships_remaining == 0:
-        return "The computer has sunk all of your ships"
-    elif computer_ships_remaining== 0:
-        return "Congratulations! You have sunk all of the computer's ships"
-    return None 
+        return "The computer has sunk all of your ships."
+    elif computer_ships_remaining == 0:
+        return "Congratulations! You have sunk all of the computer's ships."
+    return None
 
 def clear_console():
     """ Clears console """
     os.system('cls' if os.name == 'nt' else 'clear')
-
 
 
 def start_game():  
@@ -221,12 +238,11 @@ def start_game():
     game_board = Board()
     
     available_sizes = [1, 2, 3, 4, 5]
+    computer_available_sizes= [1, 2, 3, 4, 5]
 
     print('___USER BOARD:')
     game_board.display_board(game_board.user_board)
-    
-    print('___COMP BOARD:')
-    game_board.display_board(game_board.computer_board)
+    print('___COMPUTER BOARD:')
     
     for _ in range(len(available_sizes)):
         place_user_ship(game_board, available_sizes)
@@ -234,39 +250,27 @@ def start_game():
         game_board.display_board(game_board.user_board) 
     print("All ships have been placed!")
     
-  
-    place_computer_ship(game_board, available_sizes)
-
+    for _ in range(len(computer_available_sizes)):
+        place_computer_ship(game_board, computer_available_sizes)
+    print("All computer ships have been placed!")
+    print('___COMPUTER BOARD (SHIPS ARE HIDDEN):')
+    game_board.display_board(game_board.computer_board, is_computer=True)
+    
     while True:
-       
-        print('___USER TURN___')
-      
-        
+        user_guess(game_board)
         print('___COMPUTER BOARD AFTER USER GUESS:')
         game_board.display_board(game_board.computer_board, is_computer=True)
-        user_guess(game_board)
         
-    winner = check_winner(game_board)
-    if winner:
-        print(winner)
-        input("Press Enter to exit...")
-        break    
-
-        input("Press Enter to continue to the computer's turn...")
-
+        if check_winner(game_board):
+            print(check_winner(game_board))
+            break
         
-        print('___COMPUTER TURN___')
         computer_guess(game_board)
-        
-      
-        
         print('___USER BOARD AFTER COMPUTER GUESS:')
         game_board.display_board(game_board.user_board)
 
         if check_winner(game_board):
             print(check_winner(game_board))
-            input("Press Enter to exit...")
             break
 
 start_game()
-
