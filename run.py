@@ -295,6 +295,7 @@ def start_game():
 
     if view_instructions == 'y':
         display_instructions()
+        input("Press Enter once you are ready...")
     
     get_user_name()
     game_board = Board()
