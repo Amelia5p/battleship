@@ -283,20 +283,19 @@ def clear_console():
 def play_again():
     """ Ask user if they want to play again """
     while True:  
-        play_again = input("Would you like to play again? (y/n):\n").strip().lower()
+        user_input = input("Would you like to play again? (y/n):\n").strip().lower()
         
-        if play_again in ['y', 'n']:
-            break  
+        if user_input == 'y':
+            clear_console()
+            start_game()
+            break
+        elif user_input == 'n':
+            clear_console()
+            print("Thank you for playing!")
+            break
         else:
             print("Invalid input. Please enter 'y' or 'n'.")
-
-    if play_again == 'y':
-        clear_console()
-        start_game()  
-    else:
-        clear_console()
-        print("Thank you for playing!")
-        
+ 
 
         
 
