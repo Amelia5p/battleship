@@ -40,14 +40,18 @@ class Board:
         print('   A B C D E F G H ')
         print( '   ***************')
 
+        # Loop through each row of the board
         for row_num in range(self.board_size):
+            
             print(f"{row_num + 1}|", end=' ')
 
             for col_num in range(self.board_size):
+                # Get the value of the current cell (either '~', 'S', 'X', or 'O')
                 cell_value= board[row_num][col_num] 
-
+                # If it's the computer's board and the cell contains a ship ('S'), hide it with '~'
                 if is_computer and cell_value == 'S':
-                    print('~', end=' ')  # Display water symbol #This will hide ships with '~'
+                    print('~', end=' ')
+                # Otherwise, display the actual value of the cell 
                 else: 
                     print(cell_value, end=' ')
             print()
@@ -115,9 +119,11 @@ def place_ship(board, ship_size, orientation, start_row, start_col):
     """ Place a ship on the board based on what the user chooses. """
     if orientation == 'H':
         for i in range(ship_size):
+             # Place ship horizontally
             board[start_row][start_col + i] = 'S'
     elif orientation == "V":
         for i in range(ship_size):
+             # Place ship vertically
             board[start_row + i][start_col] = 'S'
     return (ship_size, orientation, start_row, start_col)
 
@@ -125,12 +131,15 @@ def place_ship(board, ship_size, orientation, start_row, start_col):
 def can_place_ship(board, ship_size, orientation, start_row, start_col):
     """ Checks if ship can be placed without overlapping """
     if orientation == 'H':
+        # Check if the ship exceeds board width
         if start_col + ship_size > len(board[0]):
             return False
+        # Check for overlap with existing ships
         for i in range(ship_size):
             if board[start_row][start_col + i] != '~':
                 return False
     elif orientation == "V":
+        # Check if the ship exceeds board height
         if start_row + ship_size > len(board):
             return False
         for i in range(ship_size):
@@ -163,7 +172,7 @@ def place_computer_ship(game_board, computer_available_sizes):
             if can_place_ship(game_board.computer_board, ship_size, orientation, row, col):
                 place_ship(game_board.computer_board, ship_size, orientation, row, col)
                 game_board.computer_positions.append((ship_size, orientation, row, col))
-                print(f"Computer placed ship of size {ship_size} at ({row}, {col}) with orientation {orientation}.")
+                print(f"Computer ship has been placed at {coordinates}.")
                 return ship_size, orientation, (row, col)
 
 
@@ -172,13 +181,17 @@ def place_computer_ship(game_board, computer_available_sizes):
 
 def user_guess(game_board):
     """Allows user to guess a position on the computer's board"""
+    # Infinite loop to keep asking for user input until a valid guess is made
     while True:
         guess = input("Enter your guess (e.g., A1, B5): ").upper()
-
+        # Validate the guess format (should be two characters: a letter and a number)
         if len(guess) == 2 and guess[0] in 'ABCDEFGH' and guess[1] in '12345678':
+            # Convert the letter (column) to an index (0-7)
             col = ord(guess[0]) - ord('A')
+            # Convert the number (row) to a zero-based index (0-7)
             row = int(guess[1]) - 1
 
+            
             if (row, col) in game_board.user_guesses:
                 print("You already guessed this location. Try again.")
             else:
@@ -199,7 +212,9 @@ def user_guess(game_board):
 def computer_guess(game_board):
     """ Allows computer to guess a random position on the computer's board """
     while True:
+        # Randomly choose a row index
         row= randint(0, game_board.board_size -1)
+        # Randomly choose a column index
         col= randint(0, game_board.board_size -1)
 
         if (row,col) not in game_board.computer_guesses:
@@ -218,7 +233,9 @@ def computer_guess(game_board):
 
 def check_winner(game_board):
     """ Checks if either player has lost all of their ships """
+     # Count the number of user's ships remaining on their board
     user_ships_remaining = sum(row.count('S') for row in game_board.user_board)
+    # Count the number of computer's ships remaining on their board
     computer_ships_remaining = sum(row.count('S') for row in game_board.computer_board)
 
 
@@ -244,12 +261,14 @@ def start_game():
     game_board.display_board(game_board.user_board)
     print('___COMPUTER BOARD:')
     
+    # Loop to allow user to place their ships
     for _ in range(len(available_sizes)):
         place_user_ship(game_board, available_sizes)
         print('___USER BOARD AFTER PLACING SHIP:')
         game_board.display_board(game_board.user_board) 
     print("All ships have been placed!")
     
+    # Loop to allow computer to place its ships
     for _ in range(len(computer_available_sizes)):
         place_computer_ship(game_board, computer_available_sizes)
     print("All computer ships have been placed!")
