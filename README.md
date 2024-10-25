@@ -47,3 +47,5 @@ computer ships were marked as '~' but when supposed to be hidden there were no s
 I was not fully familiar with the game so initially players could choose ship size 1 five times, implemented code to fix this to only allow one of each ship size per player.
 
  winner check is being triggered prematurely >> fix by separating the computer and users available sizes as once i placed all of the users ships the program would call check winner.
+
+ play agian fun> thanks for playing and ask play again was in loop, fix by using elif statement with break

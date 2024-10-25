@@ -40,8 +40,14 @@ def get_user_name():
     """
     A function to ask for the users name
     """
-    user_name = input("Please enter your name: \n")
-    print(f"Hello {user_name}, enjoy the game!!\n")
+    while True:
+        user_name = input("Please enter your name: \n")
+        if user_name:
+            print(f"Hello {user_name}, enjoy the game!!\n")
+            return user_name
+        else:
+            print("Name cannot be empty. Please enter at least one character.")
+
 
 
 class Board:
