@@ -4,6 +4,14 @@ import os
 
 def landing_page():
     """ Landing page contents"""
+    # Copied straight from https://fsymbols.com/text-art/
+    print("""
+██████╗░░█████╗░████████╗████████╗██╗░░░░░███████╗░██████╗██╗░░██╗██╗██████╗░
+██╔══██╗██╔══██╗╚══██╔══╝╚══██╔══╝██║░░░░░██╔════╝██╔════╝██║░░██║██║██╔══██╗
+██████╦╝███████║░░░██║░░░░░░██║░░░██║░░░░░█████╗░░╚█████╗░███████║██║██████╔╝
+██╔══██╗██╔══██║░░░██║░░░░░░██║░░░██║░░░░░██╔══╝░░░╚═══██╗██╔══██║██║██╔═══╝░
+██████╦╝██║░░██║░░░██║░░░░░░██║░░░███████╗███████╗██████╔╝██║░░██║██║██║░░░░░
+╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░░░░╚═╝░░░╚══════╝╚══════╝╚═════╝░╚═╝░░╚═╝╚═╝╚═╝░░░░░ """)
 
 
 def display_instructions():
@@ -274,7 +282,10 @@ def clear_console():
 
 
 def start_game():
-    
+    """ Main game function """
+    landing_page()
+    print("\n\n")
+    # Ask user if they would like to view instructions
     while True:
         view_instructions = input("Would you like to see the instructions? (y/n): ").strip().lower()
         if view_instructions in ['y', 'n']:
