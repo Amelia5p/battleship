@@ -280,6 +280,26 @@ def clear_console():
     """ Clears console """
     os.system('cls' if os.name == 'nt' else 'clear')
 
+def play_again():
+    """ Ask user if they want to play again """
+    while True:  
+        play_again = input("Would you like to play again? (y/n):\n").strip().lower()
+        
+        if play_again in ['y', 'n']:
+            break  
+        else:
+            print("Invalid input. Please enter 'y' or 'n'.")
+
+    if play_again == 'y':
+        clear_console()
+        start_game()  
+    else:
+        clear_console()
+        print("Thank you for playing!")
+        
+
+        
+
 
 def start_game():
     """ Main game function """
@@ -287,7 +307,7 @@ def start_game():
     print("\n\n")
     # Ask user if they would like to view instructions
     while True:
-        view_instructions = input("Would you like to see the instructions? (y/n): ").strip().lower()
+        view_instructions = input("Would you like to see the instructions? (y/n):\n ").strip().lower()
         if view_instructions in ['y', 'n']:
             break
         else:
@@ -332,11 +352,6 @@ def start_game():
         
         if check_winner(game_board):
             print("\n")
-            print(check_winner(game_board))
-            break
-
-        
-            
         
         computer_guess(game_board)
         print('___USER BOARD AFTER COMPUTER GUESS:')
@@ -344,8 +359,15 @@ def start_game():
 
       
 
-        if check_winner(game_board):
-            print(check_winner(game_board))
-            break
+        # Check for winner after computer's guess
+        winner_message = check_winner(game_board)
+        if winner_message:
+            print(winner_message)  
+            break  
+
+    # After the game ends, ask if the user wants to play again
+    play_again()  
+
+
 
 start_game()
