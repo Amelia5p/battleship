@@ -2,8 +2,9 @@ import random
 from random import randint, choice
 import os
 
+
 def landing_page():
-    """ Landing page contents"""
+    """Landing page contents."""
     # Copied straight from https://fsymbols.com/text-art/
     print("""
 ██████╗░░█████╗░████████╗████████╗██╗░░░░░███████╗░██████╗██╗░░██╗██╗██████╗░
@@ -11,28 +12,38 @@ def landing_page():
 ██████╦╝███████║░░░██║░░░░░░██║░░░██║░░░░░█████╗░░╚█████╗░███████║██║██████╔╝
 ██╔══██╗██╔══██║░░░██║░░░░░░██║░░░██║░░░░░██╔══╝░░░╚═══██╗██╔══██║██║██╔═══╝░
 ██████╦╝██║░░██║░░░██║░░░░░░██║░░░███████╗███████╗██████╔╝██║░░██║██║██║░░░░░
-╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░░░░╚═╝░░░╚══════╝╚══════╝╚═════╝░╚═╝░░╚═╝╚═╝╚═╝░░░░░ """)
+╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░░░░╚═╝░░░╚══════╝╚══════╝╚═════╝░╚═╝░░╚═╝╚═╝╚═╝░░░░░
+""")
 
 
 def display_instructions():
     """
     Function to display simplified instructions for the Battleship game.
     """
-    print("### Battleship Game Instructions ###\n")
-    print("1. Objective:")
-    print("   - Sink all of your opponent's ships before they sink yours.\n")
-    print("2. Game Setup:")
-    print("   - Place 5 ships on your 8x8 grid.")
-    print("   - Choose ship sizes (1 to 5) and their orientation (Horizontal or Vertical).\n")
-    print("3. Placing Your Ships:")
-    print("   - Enter starting coordinates (e.g., A1) for your ship placement.")
-    print("   - Ensure ships do not overlap or go out of bounds.\n")
-    print("4. Taking Turns:")
-    print("   - Guess the location of your opponent's ships by entering coordinates.")
-    print("   - Hits are marked as 'X', misses as 'O'.\n")
-    print("5. Winning the Game:")
-    print("   - The game ends when one player sinks all of the opponent's ships.\n")
-    print("Good luck and enjoy Battleship!\n")
+    instructions = """
+### Battleship Game Instructions ###
+
+1. Objective:
+   - Sink all of your opponent's ships before they sink yours.
+
+2. Game Setup:
+   - Place 5 ships on your 8x8 grid.
+   - Choose ship sizes (1 to 5) and their orientation (H or V).
+
+3. Placing Your Ships:
+   - Enter starting coordinates (e.g., A1) for your ship placement.
+   - Ensure ships do not overlap or go out of bounds.
+
+4. Taking Turns:
+   - Guess the location of your opponent's ships by entering coordinates.
+   - Hits are marked as 'X', misses as 'O'.
+
+5. Winning the Game:
+   - The game ends when one player sinks all of the opponent's ships.
+
+Good luck and enjoy Battleship!
+    """
+    print(instructions)
 
 
 
@@ -200,7 +211,6 @@ def place_computer_ship(game_board, computer_available_sizes):
         
         # Randomly decide orientation
         orientation = 'H' if ship_size == 1 else random.choice(['H', 'V'])
-        
         # Generate random starting coordinates
         while True:
             row = random.randint(0, game_board.board_size - 1)
