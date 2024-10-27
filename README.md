@@ -144,6 +144,33 @@ I was not fully familiar with the game so initially players could choose ship si
 
 # Deployment
 
+This project was deployed on Heroku. I will outline the steps to deploy the project below:
+
+### Step 1:
+Log into Heroku.
+### Step 2:
+Create new app.
+### Step 3:
+Type in the name of the app, which must be unique to work.
+### Step 4:
+Select your region.
+### Step 5:
+Click 'Create App' button.
+### Step 6:
+Click on the settings tab and go to 'Configure Vars' section.
+### Step 7:
+Click 'Reveal Config Vars', enter 'PORT' into the Key box and '8000' into the value box. Click the add button.
+### Step 8:
+Add buildpacks: Python and Nodejs in that order.
+### Step 9:
+Click on deploy tab.
+### Step 10:
+Connect GitHub account and search for repository name.
+### Step 11:
+Connect GitHub repository.
+### Step 12:
+Choose automatic deploy and select deploy.
+
 
 # Credits
 
