@@ -361,6 +361,7 @@ def play_again():
 
 def take_turns(game_board):
     """Main game loop for taking turns until there's a winner."""
+    clear_console()
     while True:
         # User's turn
         print("Your turn:")
@@ -372,20 +373,21 @@ def take_turns(game_board):
         winner = check_winner(game_board)
         if winner:
             print(winner)
-            break
+            break      
         
         # Computer's turn
         print("\nComputer's turn:")
         computer_guess(game_board)
         print("___USER BOARD AFTER COMPUTER TURN:")
         game_board.display_board(game_board.user_board)
+
+        
         
         # Check for winner after computer's turn
         winner = check_winner(game_board)
         if winner:
             print(winner)
-            break
-
+            break 
 
 def start_game():
     """ Main game function """
