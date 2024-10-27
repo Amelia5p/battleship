@@ -3,12 +3,9 @@
 ## Site Overview
 Battleship is a two-player game where players aim to sink each other's ships by guessing their locations on an 8x8 grid. This version of the classic game has you competing against the computer in a grid-based battle to be the last one standing!
 
+Live site: https://battleship123-ebf95228255d.herokuapp.com/
 
-
-Live site:
-
-![Responsive Site]() 
-
+![Responsive Site](images/responsive.png) 
 
 
 <!-- TOC end -->
@@ -32,22 +29,30 @@ To have a clear idea of what I wanted to build, I created the below flowchart.
 # Features
 
 ## Landing Page
+
 The landing page shows the name of the game clearly.
+
 ![Landing](images/Landing.png)
 
 ## Instructions
+
 The user is asked whether or not they want to view the insructions for the game. The instructions are clear and concise.
+
 ![Instructions](images/Instructions.png)
 
 ## Username
+
 The user is asked for their name, input is validated.
 
 ![Username](images/Name.png)
+
 ## Display Board
+
 The board is displayed for the user, you can see ships are marked by an 'S'.
 
 ![Display](images/Display.png)
 <br>
+
 ![Ship](images/ships.png)
 
 ## 'Hit' mark on board
@@ -65,19 +70,24 @@ A winner message is displayed once either player has sunk all of their opponent'
 
 ![Winner](images/winner_msg.png)
 <br>
+
 ![Winner](images/winner_msg_2.png)
 
 ## Play Again
+
 When the game is over, the player is asked if they would like to play again.
 
 ![Play](images/play_again.png)
 
 ### Future features
+
  I would like to implement the following features in the future to allow for an improved user experience:
  - Sign up and Login feature to allow users a personalised experience.
  - Allow player to choose the board size
  - Implement a leaderboard using google sheets API
  
+<br>
+
 # Testing
 
 ## Feature Testing 
@@ -97,10 +107,14 @@ When the game is over, the player is asked if they would like to play again.
 
 
 ## Lighthouse Testing
-The lighthouse testing was successful with scores above 90 across all pages for all four ratings (Performance, Accessibility, Best Practices and SEO).
+
+The lighthouse testing was successful for all four ratings (Performance, Accessibility, Best Practices and SEO).
+
+![Lighthouse](images/lighthouse.png)
 
 ## Code Validation
 ### PYTHON
+
  ![Linter](images/Linter.png)
 
 
@@ -141,6 +155,7 @@ I was not fully familiar with the game so initially players could choose ship si
 
 
 # Acknowledgements 
+
 This is project one, created for the Code Institutes Full Stack Web Developer (eCommerce) course. I would like to thank my cohort facilitator and the Code Institute team for their support.
 
 
