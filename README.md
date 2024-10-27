@@ -39,6 +39,12 @@ Live site:
 
 # Features
 
+## Landing Page
+
+## Instructions
+
+## Display Board
+
 
 ### Accessibility
 Aria-lables, alt text, color contrast and font selections were thoughtfully chosen to ensure an inclusive and accesible user experience.
@@ -56,15 +62,15 @@ Aria-lables, alt text, color contrast and font selections were thoughtfully chos
 
 | Feature | Action | Result |
 | ---|---|:---:|
-| Landing Page Display | Confirm that the ASCII art logo appears as expected | PASS |
-| Display Instructions | Check that the game instructions are displayed correctly  | PASS |
-| Get User Name |  | PASS |
+| Landing Page Display | Confirm that the ASCII art logo appears as expected. | PASS |
+| Display Instructions | Check that the game instructions are displayed correctly.  | PASS |
+| Get User Name |Verify user can input their name and that it is properly validated.| PASS |
 | Display Board |Ensure the board displays accurately for both players- ships hidden on the computer’s board.| PASS |
 | Place User Ship | Validate that ships can be placed by the user with appropriate size, orientation, and positioning. | PASS |
 | User Guess| Verify that valid hits (X) and misses (O) are marked correctly on the computer’s board.| PASS |
 | Computer Guess|Confirm the computer can randomly guess positions on the user’s board,record hits and misses correctly.| PASS |
 | Check Winner| Verify that the game correctly identifies and announces the winner when all ships of one player are sunk.| PASS |
-| Clear Console| Check that the console is cleared when prompted| PASS |
+| Clear Console| Check that the console is cleared when prompted.| PASS |
 | Play Again| Ensure that the user can choose to play again or exit after the game ends.| PASS |
 
 

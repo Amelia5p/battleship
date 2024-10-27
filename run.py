@@ -22,8 +22,8 @@ def display_instructions():
     """
     Function to display simplified instructions for the Battleship game.
     """
-    instructions = """
-### Battleship Game Instructions ###
+    # Multi-line string containing the instructions for the game
+    instructions = """Battleship Game Instructions ###
 
 1. Objective:
    - Sink all of your opponent's ships before they sink yours.
@@ -43,19 +43,21 @@ def display_instructions():
 5. Winning the Game:
    - The game ends when one player sinks all of the opponent's ships.
 
-Good luck and enjoy Battleship!
-    """
+Good luck and enjoy Battleship!"""
     print(instructions)
 
 
 def get_user_name():
+    """ Get's username and validates it """
     while True:
         user_name = input("Please enter your name: \n").strip()
         if user_name and user_name.replace(" ", "").isalpha():
             print(f"Hello {user_name}, enjoy the game!!\n")
             return user_name
         else:
-            print("Invalid name. Please enter a valid name (only letters and spaces allowed).")
+            print(
+                "Invalid name. Please enter a valid name "
+                "(only letters and spaces allowed).")
 
 
 class Board:
@@ -92,9 +94,9 @@ class Board:
             print(f"{row_num + 1}|", end=" ")
 
             for col_num in range(self.board_size):
-                # Get the value of the current cell (either '~', 'S', 'X', or 'O')
+                # Get the value of the current cell (either '~', 'S', 'X','O')
                 cell_value = board[row_num][col_num]
-                # If it's the computer's board and the cell contains a ship ('S'),
+                # If it's the computer's board and the cell contains a ship
                 # hide it with '~'
                 if is_computer and cell_value == "S":
                     print("~", end=" ")
@@ -103,7 +105,6 @@ class Board:
                     print(cell_value, end=" ")
             print()
         print()
-
 
 
 def place_user_ship(game_board, available_sizes):
@@ -121,7 +122,8 @@ def place_user_ship(game_board, available_sizes):
             )
             if ship_size in available_sizes:
                 print(f"Great choice, your ship size is {ship_size}!")
-                # Add chosen ship size to user's selected sizes, remove it from available sizes
+                # Add chosen ship size to user's selected sizes
+                # Remove it from available sizes
                 game_board.user_selected_sizes.append(ship_size)
                 available_sizes.remove(ship_size)
 
@@ -129,12 +131,13 @@ def place_user_ship(game_board, available_sizes):
                 if ship_size == 1:
                     orientation = "H"
                     print(
-                        "Since your ship size is 1, orientation is not necessary"
+                        "Your ship size is 1, orientation is not necessary"
                     )
                 else:
                     while True:
                         orientation = input(
-                            "Do you want to place your ship horizontally or vertically? (H/V):\n "
+                            "Do you want to place your ship horizontally"
+                            "or vertically? (H/V):\n "
                         ).upper()
                         # Validate orientation input
                         if orientation in ["H", "V"]:
@@ -142,14 +145,16 @@ def place_user_ship(game_board, available_sizes):
                             break
                         else:
                             print(
-                                "Invalid input. Please enter 'H' for horizontal or 'V' for vertical."
+                                "Invalid input. Please enter 'H' for"
+                                "horizontalor 'V' for vertical."
                             )
 
                 while True:
                     coordinates = input(
                         "Enter desired coordinates (e.g., A1, B5):\n "
                     ).upper()
-                    # Validate that coordinates follow correct format and fall within board limits
+                    # Validate that coordinates follow correct format
+                    # and fall within board limits
                     if (
                         len(coordinates) == 2
                         and coordinates[0] in "ABCDEFGH"
@@ -183,15 +188,18 @@ def place_user_ship(game_board, available_sizes):
                             return ship_size, orientation, coordinates
                         else:
                             print(
-                                "Cannot place ship here. It goes out of bounds or overlaps another ship."
+                                "Cannot place ship here. It goes out of bounds"
+                                "or overlaps another ship."
                             )
                     else:
                         print(
-                            "Invalid input. Please enter coordinates in the format 'Letter (A-H) followed by Number (1-8)'."
+                            "Invalid input. Please enter coordinates in the"
+                            "format 'Letter (A-H) followed by Number (1-8)'."
                         )
             else:
                 print(
-                    "You have already chosen this size. Please enter an available ship size."
+                    "You have already chosen this size. Please enter an"
+                    "available ship size."
                 )
         except ValueError:
             print("Invalid input. Please enter a valid integer.")
@@ -266,7 +274,7 @@ def user_guess(game_board):
     # Infinite loop to keep asking for user input until a valid guess is made
     while True:
         guess = input("Enter your guess (e.g., A1, B5):\n ").upper()
-        # Validate the guess format (should be two characters: a letter and a number)
+        # Validate the guess format (should be a letter and a number)
         if (
             len(guess) == 2
             and guess[0] in "ABCDEFGH"
@@ -291,7 +299,8 @@ def user_guess(game_board):
                 break
         else:
             print(
-                "Invalid input. Please enter coordinates in the format 'Letter (A-H) followed by Number (1-8)'."
+                "Invalid input. Please enter coordinates in the format"
+                "'Letter (A-H) followed by Number (1-8)'."
             )
 
 
@@ -355,6 +364,7 @@ def play_again():
         else:
             print("Invalid input. Please enter 'y' or 'n'.")
 
+
 def take_turns(game_board):
     """Main game loop for taking turns until there's a winner."""
     clear_console()
@@ -364,26 +374,22 @@ def take_turns(game_board):
         user_guess(game_board)
         print("___COMPUTER BOARD AFTER USER TURN:")
         game_board.display_board(game_board.computer_board, is_computer=True)
-        
         # Check for winner after user's turn
         winner = check_winner(game_board)
         if winner:
             print(winner)
-            break      
-        
+            break
         # Computer's turn
         print("\nComputer's turn:")
         computer_guess(game_board)
         print("___USER BOARD AFTER COMPUTER TURN:")
         game_board.display_board(game_board.user_board)
-
-        
-        
         # Check for winner after computer's turn
         winner = check_winner(game_board)
         if winner:
             print(winner)
-            break 
+            break
+
 
 def start_game():
     """ Main game function """
@@ -391,7 +397,8 @@ def start_game():
     print("\n\n")
     # Ask user if they would like to view instructions
     while True:
-        view_instructions = input("Would you like to see the instructions? (y/n):\n ").strip().lower()
+        view_instructions = input("Would you like to see the instructions?"
+                                  "(y/n):\n ").strip().lower()
         if view_instructions in ['y', 'n']:
             break
         else:
@@ -400,24 +407,23 @@ def start_game():
     if view_instructions == 'y':
         display_instructions()
         input("Press Enter once you are ready...")
-    
+
     get_user_name()
     game_board = Board()
-    
+
     available_sizes = [1, 2, 3, 4, 5]
-    computer_available_sizes= [1, 2, 3, 4, 5]
+    computer_available_sizes = [1, 2, 3, 4, 5]
 
     print('___USER BOARD:')
     game_board.display_board(game_board.user_board)
-   
-    
+
     # Loop to allow user to place their ships
     for _ in range(len(available_sizes)):
         place_user_ship(game_board, available_sizes)
         print('___USER BOARD AFTER PLACING SHIP(S):')
-        game_board.display_board(game_board.user_board) 
+        game_board.display_board(game_board.user_board)
     print("All ships have been placed!")
-    
+
     # Loop to allow computer to place its ships
     for _ in range(len(computer_available_sizes)):
         place_computer_ship(game_board, computer_available_sizes)
@@ -425,7 +431,7 @@ def start_game():
 
     # Main game loop to take turns
     take_turns(game_board)
-    #Ask's user if they would like to play again
+    # Ask's user if they would like to play again
     play_again()
 
 
