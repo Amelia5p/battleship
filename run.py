@@ -383,6 +383,7 @@ def take_turns(game_board):
             break
         
         input("Press Enter to see the next board...")
+        clear_console()
         
         
      # Computer's turn
