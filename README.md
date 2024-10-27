@@ -23,10 +23,7 @@ Live site:
 ### Lucid Chart
 
 
-![flowchart]()
-
-
-
+![flowchart](images/flowchart.png)
 
 ## User Stories
 
@@ -40,10 +37,28 @@ Live site:
 # Features
 
 ## Landing Page
+![Landing](images/Landing.png)
 
 ## Instructions
+![Instructions](images/Instructions.png)
 
+## Username
+![Username](images/Name.png)
 ## Display Board
+![Display](images/Display.png)
+
+## 'Hit' mark on board
+[!Hit](images/hit.png)
+
+## 'Miss' mark on board
+[!Miss](images/miss.png)
+
+## Winner messages
+[!Winner](images/winner_msg.png)
+[!Winner](images/winner_msg_2.png)
+
+## Play Again
+[!Play](images/play_again.png)
 
 
 ### Accessibility
