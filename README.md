@@ -15,62 +15,69 @@ Live site:
 
 <br><br>
 
-# User Experience
-
-## Design
-
 
 ### Lucid Chart
 
+To have a clear idea of what I wanted to build, I created the below flowchart.
 
 ![flowchart](images/flowchart.png)
 
 ## User Stories
 
-### First time visitor goals
-* As a first time user,
-
-### Returning visitor goals
-* As a returning user, 
+* As a user, I want to know what the game is immediately.
+* As a user, I want to be able to read clear instructions to understand how to play.
+* As a user, I want to have a good experience.
 
 
 # Features
 
 ## Landing Page
+The landing page shows the name of the game clearly.
 ![Landing](images/Landing.png)
 
 ## Instructions
+The user is asked whether or not they want to view the insructions for the game. The instructions are clear and concise.
 ![Instructions](images/Instructions.png)
 
 ## Username
+The user is asked for their name, input is validated.
+
 ![Username](images/Name.png)
 ## Display Board
+The board is displayed for the user, you can see ships are marked by an 'S'.
+
 ![Display](images/Display.png)
+<br>
+![Ship](images/ships.png)
 
 ## 'Hit' mark on board
-[!Hit](images/hit.png)
+A 'hit' is clearly marked with an 'X'.
+
+![Hit](images/hit.png)
 
 ## 'Miss' mark on board
-[!Miss](images/miss.png)
+A 'miss' is clearly marked with a 'O'.
+
+![Miss](images/miss.png)
 
 ## Winner messages
-[!Winner](images/winner_msg.png)
-[!Winner](images/winner_msg_2.png)
+A winner message is displayed once either player has sunk all of their opponent's ships.
+
+![Winner](images/winner_msg.png)
+<br>
+![Winner](images/winner_msg_2.png)
 
 ## Play Again
-[!Play](images/play_again.png)
+When the game is over, the player is asked if they would like to play again.
 
-
-### Accessibility
-Aria-lables, alt text, color contrast and font selections were thoughtfully chosen to ensure an inclusive and accesible user experience.
+![Play](images/play_again.png)
 
 ### Future features
  I would like to implement the following features in the future to allow for an improved user experience:
  - Sign up and Login feature to allow users a personalised experience.
- - Choose board size
- - Leaderboard using google sheets API
+ - Allow player to choose the board size
+ - Implement a leaderboard using google sheets API
  
-
 # Testing
 
 ## Feature Testing 
@@ -89,18 +96,12 @@ Aria-lables, alt text, color contrast and font selections were thoughtfully chos
 | Play Again| Ensure that the user can choose to play again or exit after the game ends.| PASS |
 
 
-
-
-
-## Browsers Compatibility
-The site was tested using Dev Tools on Google Chrome, Safari, Firefox and Edge and functions and appears as it should across all major browsers. I also tested it on an Iphone 12 mini and a Samsung Galaxy S21 ultra.
-
 ## Lighthouse Testing
 The lighthouse testing was successful with scores above 90 across all pages for all four ratings (Performance, Accessibility, Best Practices and SEO).
 
 ## Code Validation
 ### PYTHON
-PEP8
+ ![Linter](images/Linter.png)
 
 
 
