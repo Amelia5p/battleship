@@ -370,7 +370,7 @@ def take_turns(game_board):
     
     while True:
         # User's turn
-        
+        clear_console()
         game_board.display_board(game_board.computer_board, is_computer=True)
         print("Your turn:")
         user_guess(game_board)
