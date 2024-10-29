@@ -182,14 +182,6 @@ Choose automatic deploy and select deploy.
 Youtube video for formatting board- used some ideas:  https://www.youtube.com/watch?v=cwpS_ac8uk0
 <br>
 Code for random computer choice inspired by : https://www.codecademy.com/resources/docs/python/random-module/choice
- 
-## Modules used
-
-### Random
-This module provides functions to generate random numbers and choices. It is used in the game to randomly place ships for the computer and to generate random guesses for the computer's turn.
-
-### OS
-This module provides a way to use operating system-dependent functionality. In this game, it is used to clear the console screen.
 
 ## Other
 [Lucid Charts](https://www.lucidchart.com/)
@@ -197,6 +189,17 @@ This module provides a way to use operating system-dependent functionality. In t
 [Am I Responsive](https://ui.dev/amiresponsive)
 <br>
 [ACSII Art](https://www.textartcopy.com/simple-text-art.html)
+
+## Languages and modules used
+
+### Python
+This project was created using Python.
+
+### Random
+This module provides functions to generate random numbers and choices. It is used in the game to randomly place ships for the computer and to generate random guesses for the computer's turn.
+
+### OS
+This module provides a way to use operating system-dependent functionality. In this game, it is used to clear the console screen.
 
 # Acknowledgements 
 

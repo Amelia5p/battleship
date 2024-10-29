@@ -23,7 +23,7 @@ def display_instructions():
     Function to display simplified instructions for the Battleship game.
     """
     # Multi-line string containing the instructions for the game
-    instructions = """Battleship Game Instructions ###
+    instructions = """Battleship Game Instructions 
 
 1. Objective:
    - Sink all of your opponent's ships before they sink yours.
