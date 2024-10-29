@@ -189,7 +189,7 @@ def place_user_ship(game_board, available_sizes):
                         else:
                             print(
                                 "Cannot place ship here. It goes out of "
-                                " bounds or overlaps another ship."
+                                "bounds or overlaps another ship."
                             )
                     else:
                         print(
