@@ -24,25 +24,27 @@ To have a clear idea of what I wanted to build, I created the below flowchart.
 * As a user, I want to know what the game is immediately.
 * As a user, I want to be able to read clear instructions to understand how to play.
 * As a user, I want to have a good experience.
+* As a user, I want clear prompts and error messages, so I know if I make an invalid move.
+* As a user, I want the option to play again after each game, so I can try different strategies.
 
 
 # Features
 
 ## Landing Page
 
-The landing page shows the name of the game clearly.
+The landing page shows the name of the game clearly and an option to view the instructions.
 
 ![Landing](images/Landing.png)
 
 ## Instructions
 
-The user is asked whether or not they want to view the insructions for the game. The instructions are clear and concise.
+ The instructions are clear and concise and written in 5 points.
 
 ![Instructions](images/Instructions.png)
 
 ## Username
 
-The user is asked for their name, input is validated.
+The user is asked for their name, the input is then validated.
 
 ![Username](images/Name.png)
 
@@ -79,13 +81,14 @@ When the game is over, the player is asked if they would like to play again.
 
 ![Play](images/play_again.png)
 
-### Future features
+## Future features
 
  I would like to implement the following features in the future to allow for an improved user experience:
  - Sign up and Login feature to allow users a personalised experience.
- - Allow player to choose the board size
- - Implement a leaderboard using google sheets API
+ - Allow player to choose the board size.
+ - Implement a leaderboard using google sheets API.
  
+<br>
 <br>
 
 # Testing
@@ -115,32 +118,35 @@ The lighthouse testing was successful for all four ratings (Performance, Accessi
 ## Code Validation
 ### PYTHON
 
+The code was tested on CI Python Linter, fixed all errors found. There are no errors as a result.
+
  ![Linter](images/Linter.png)
 
 
+<br>
 
-# Bugs
+# Bugs & Fixes:
 
 Debugging and problem solving was done consistently throughout the development process.
 
 List of some issues that arose:
 
-BUGS:
-The code board[start_row][start_col + 'i'] has an issue because 'i' should not be in quotes. It is a variable, so simply write start_col + i.
 
-after user chooses ship places it wasnt placing 'S' on board to show where ships are >> fixed this by mofifyng  start game function = game_board.display_board(game_board.user_board)
+* The code board `board[start_row][start_col + 'i']` had an issue because 'i' should not be in quotes. It is a variable, so I fixed this by correcting the line of code to `board[start_row][start_col + i]`
 
-the game was asking if user wanted h/v when user picked 1 which is unnecessary, fixed this by: setting orientation to H automatically if 1 is selected 
+* After the user chooses a ship position it wasnt placing 'S' on the board to show where ships were. I fixed this by modifyng  start game function = `game_board.display_board(game_board.user_board)`
 
-computer ships were marked as '~' but when supposed to be hidden there were no spaces between cells where the ships were so you could tell their locations, updated with space to hide properly.
+* The game was asking if the user wanted horizontal or vertical orientation when the user picked 1 for ship size which was unnecessary, fixed this by setting orientation to 'H' automatically if 1 is selected. 
 
-I was not fully familiar with the game so initially players could choose ship size 1 five times, implemented code to fix this to only allow one of each ship size per player.
+* Computer ships were marked as water '~' but when they were supposed to be hidden there were no spaces between cells where the ships were so you could tell their locations, updated with space to hide them properly.
 
- winner check is being triggered prematurely >> fix by separating the computer and users available sizes as once i placed all of the users ships the program would call check winner.
+* I was not fully familiar with the game so initially players could choose ship size 1 five times, implemented code to fix this to only allow one of each ship size per player.
 
- play agian fun> thanks for playing and ask play again was in loop, fix by using elif statement with break
+* The `check_winner` function was being triggered prematurely, I fixed this by separating the computer and users available ship sizes as once I placed all of the users ships the program would call check winner.
 
+* The play agian function has a message that asks the user if they would like to play again but this was stuck in loop, fixed this by using elif statement with `break`.
 
+<br>
 
 # Deployment
 
@@ -174,56 +180,17 @@ Choose automatic deploy and select deploy.
 
 # Credits
 
+Youtube video for formatting board- used some ideads:  https://www.youtube.com/watch?v=cwpS_ac8uk0
+<br>
+Code for random computer choice inspired by : https://www.codecademy.com/resources/docs/python/random-module/choice
  
 ## Other
-
-
-## Code / Educational Resources
-
+[Lucid Charts](https://www.lucidchart.com/)
+<br>
+[Am I Responsive](https://ui.dev/amiresponsive)
+<br>
+[ACSII Art](https://www.textartcopy.com/simple-text-art.html)
 
 # Acknowledgements 
 
-This is project one, created for the Code Institutes Full Stack Web Developer (eCommerce) course. I would like to thank my cohort facilitator and the Code Institute team for their support.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Happy coding!
-
-credits: YT video for formating board used some ideas > https://www.youtube.com/watch?v=cwpS_ac8uk0
-code for random computer choice inspired by : https://discuss.codecademy.com/t/excellent-battleship-game-written-in-python/430605
-
-
-BUGS:
-The code board[start_row][start_col + 'i'] has an issue because 'i' should not be in quotes. It is a variable, so simply write start_col + i.
-
-after user chooses ship places it wasnt placing 'S' on board to show where ships are >> fixed this by modifyng  start game function = game_board.display_board(game_board.user_board)
-
-the game was asking if user wanted h/v when user picked 1 which is unnecessary, fixed this by: setting orientation to H automatically if 1 is selected 
-
-computer ships were marked as '~' but when supposed to be hidden there were no spaces between cells where the ships were so you could tell their locations, updated with space to hide properly.
-
-I was not fully familiar with the game so initially players could choose ship size 1 five times, implemented code to fix this to only allow one of each ship size per player.
-
- winner check is being triggered prematurely >> fix by separating the computer and users available sizes as once i placed all of the users ships the program would call check winner.
-
- play agian fun> thanks for playing and ask play again was in loop, fix by using elif statement with break
+This is project three, created for the Code Institutes Full Stack Web Developer (eCommerce) course. I would like to thank my cohort facilitator and the Code Institute team for their support.
