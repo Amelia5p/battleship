@@ -398,7 +398,7 @@ def start_game():
     landing_page()
     # Ask user if they would like to view instructions
     while True:
-        view_instructions = input("Would you like to see the instructions?/n"
+        view_instructions = input("Would you like to see the instructions?"
                                   "(y/n):\n ").strip().lower()
         if view_instructions in ['y', 'n']:
             break
