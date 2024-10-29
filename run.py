@@ -241,7 +241,8 @@ def can_place_ship(board, ship_size, orientation, start_row, start_col):
 def place_computer_ship(game_board, computer_available_sizes):
     """
     Randomly selects ship size, orientation, and coordinates for the computer.
-    Ensures that ships are placed within bounds and do not overlap.
+    Ensures that ships are placed within bounds and do not overlap. Random
+    library used.
     """
     while True:
         # Randomly pick a ship size from available sizes

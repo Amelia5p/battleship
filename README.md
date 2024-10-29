@@ -15,7 +15,7 @@ Live site: https://battleship123-ebf95228255d.herokuapp.com/
 
 ### Lucid Chart
 
-To have a clear idea of what I wanted to build, I created the below flowchart.
+To get a clear idea of what I wanted to build, I created the flowchart below.
 
 ![flowchart](images/flowchart.png)
 
@@ -89,7 +89,6 @@ When the game is over, the player is asked if they would like to play again.
  - Implement a leaderboard using google sheets API.
  
 <br>
-<br>
 
 # Testing
 
@@ -134,7 +133,7 @@ List of some issues that arose:
 
 * The code board `board[start_row][start_col + 'i']` had an issue because 'i' should not be in quotes. It is a variable, so I fixed this by correcting the line of code to `board[start_row][start_col + i]`
 
-* After the user chooses a ship position it wasnt placing 'S' on the board to show where ships were. I fixed this by modifyng  start game function = `game_board.display_board(game_board.user_board)`
+* After the user chooses a ship position it wasnt placing 'S' on the board to show where ships were. I fixed this by modifying  start game function = `game_board.display_board(game_board.user_board)`
 
 * The game was asking if the user wanted horizontal or vertical orientation when the user picked 1 for ship size which was unnecessary, fixed this by setting orientation to 'H' automatically if 1 is selected. 
 
@@ -144,7 +143,7 @@ List of some issues that arose:
 
 * The `check_winner` function was being triggered prematurely, I fixed this by separating the computer and users available ship sizes as once I placed all of the users ships the program would call check winner.
 
-* The play agian function has a message that asks the user if they would like to play again but this was stuck in loop, fixed this by using elif statement with `break`.
+* The play again function has a message that asks the user if they would like to play again but this was stuck in loop, fixed this by using `elif` statement with `break`.
 
 <br>
 
@@ -180,7 +179,7 @@ Choose automatic deploy and select deploy.
 
 # Credits
 
-Youtube video for formatting board- used some ideads:  https://www.youtube.com/watch?v=cwpS_ac8uk0
+Youtube video for formatting board- used some ideas:  https://www.youtube.com/watch?v=cwpS_ac8uk0
 <br>
 Code for random computer choice inspired by : https://www.codecademy.com/resources/docs/python/random-module/choice
  
