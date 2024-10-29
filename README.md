@@ -145,6 +145,8 @@ List of some issues that arose:
 
 * The play again function has a message that asks the user if they would like to play again but this was stuck in loop, fixed this by using `elif` statement with `break`.
 
+* Some print statements were being broken up halfway through a word due to the size of the terminal. I fixed this by using two print statements.
+ 
 <br>
 
 # Deployment
@@ -154,13 +156,13 @@ This project was deployed on Heroku. I will outline the steps to deploy the proj
 ### Step 1:
 Log into Heroku.
 ### Step 2:
-Create new app.
+Create a new app.
 ### Step 3:
 Type in the name of the app, which must be unique to work.
 ### Step 4:
 Select your region.
 ### Step 5:
-Click 'Create App' button.
+Click the 'Create App' button.
 ### Step 6:
 Click on the settings tab and go to 'Configure Vars' section.
 ### Step 7:
@@ -179,7 +181,7 @@ Choose automatic deploy and select deploy.
 
 # Credits
 
-Youtube video for formatting board- used some ideas:  https://www.youtube.com/watch?v=cwpS_ac8uk0
+YouTube video for formatting board- used some ideas:  https://www.youtube.com/watch?v=cwpS_ac8uk0
 <br>
 Code for random computer choice inspired by : https://www.codecademy.com/resources/docs/python/random-module/choice
 

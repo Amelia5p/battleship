@@ -137,7 +137,7 @@ def place_user_ship(game_board, available_sizes):
                     while True:
                         orientation = input(
                             "Do you want to place your ship horizontally"
-                            " or vertically? (H/V):\n "
+                            " or vertically? (H/V)\n: "
                         ).upper()
                         # Validate orientation input
                         if orientation in ["H", "V"]:
@@ -198,8 +198,8 @@ def place_user_ship(game_board, available_sizes):
                         )
             else:
                 print(
-                    "You have already chosen this size or this ship size is\n"
-                    "not available. Please enter an available ship size."
+                    "You have already chosen this size or this ship size is"
+                    " not available. Please enter an available ship size."
                 )
         except ValueError:
             print("Invalid input. Please enter a valid integer.")
@@ -300,7 +300,7 @@ def user_guess(game_board):
                 break
         else:
             print(
-                "Invalid input. Please enter coordinates in the format"
+                "Invalid input. Please enter coordinates in the format "
                 "'Letter (A-H) followed by Number (1-8)'."
             )
 
@@ -382,7 +382,7 @@ def take_turns(game_board):
             break
         input("Press Enter to see the next board...")
         # Computer's turn
-        print("\nComputer's turn:")
+        print("Computer's turn:")
         computer_guess(game_board)
         print("___USER BOARD AFTER COMPUTER TURN:")
         game_board.display_board(game_board.user_board)
@@ -396,10 +396,9 @@ def take_turns(game_board):
 def start_game():
     """ Main game function """
     landing_page()
-    print("\n\n")
     # Ask user if they would like to view instructions
     while True:
-        view_instructions = input("Would you like to see the instructions?"
+        view_instructions = input("Would you like to see the instructions?/n"
                                   "(y/n):\n ").strip().lower()
         if view_instructions in ['y', 'n']:
             break
