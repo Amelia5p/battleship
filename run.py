@@ -198,7 +198,7 @@ def place_user_ship(game_board, available_sizes):
                         )
             else:
                 print(
-                    "You have already chosen this size. Please enter an"
+                    "You have already chosen this size or this ship size is not available. Please enter an "
                     "available ship size."
                 )
         except ValueError:
