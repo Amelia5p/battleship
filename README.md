@@ -190,7 +190,7 @@ Code for random computer choice inspired by : https://www.codecademy.com/resourc
 <br>
 [Am I Responsive](https://ui.dev/amiresponsive)
 <br>
-[ACSII Art](https://fsymbols.com/text-art/)
+[ASCII Art](https://fsymbols.com/text-art/)
 
 ## Languages and modules used
 
