@@ -137,7 +137,7 @@ def place_user_ship(game_board, available_sizes):
                     while True:
                         orientation = input(
                             "Do you want to place your ship horizontally"
-                            "or vertically? (H/V):\n "
+                            " or vertically? (H/V):\n "
                         ).upper()
                         # Validate orientation input
                         if orientation in ["H", "V"]:
@@ -145,7 +145,7 @@ def place_user_ship(game_board, available_sizes):
                             break
                         else:
                             print(
-                                "Invalid input. Please enter 'H' for"
+                                "Invalid input. Please enter 'H' for "
                                 "horizontal or 'V' for vertical."
                             )
 
@@ -198,7 +198,7 @@ def place_user_ship(game_board, available_sizes):
                         )
             else:
                 print(
-                    "You have already chosen this size or this ship size is not available." 
+                    "You have already chosen this size or this ship size is not available. " 
                     "Please enter an available ship size."
                 )
         except ValueError:
