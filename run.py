@@ -23,7 +23,7 @@ def display_instructions():
     Function to display simplified instructions for the Battleship game.
     """
     # Multi-line string containing the instructions for the game
-    instructions = """Battleship Game Instructions 
+    instructions = """Battleship Game Instructions
 
 1. Objective:
    - Sink all of your opponent's ships before they sink yours.
@@ -188,8 +188,8 @@ def place_user_ship(game_board, available_sizes):
                             return ship_size, orientation, coordinates
                         else:
                             print(
-                                "Cannot place ship here. It goes out of bounds "
-                                "or overlaps another ship."
+                                "Cannot place ship here. It goes out of "
+                                " bounds or overlaps another ship."
                             )
                     else:
                         print(
@@ -198,8 +198,8 @@ def place_user_ship(game_board, available_sizes):
                         )
             else:
                 print(
-                    "You have already chosen this size or this ship size is not available.\n" 
-                    "Please enter an available ship size."
+                    "You have already chosen this size or this ship size is\n"
+                    " available. Please enter an available ship size."
                 )
         except ValueError:
             print("Invalid input. Please enter a valid integer.")
