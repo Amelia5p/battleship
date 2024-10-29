@@ -146,7 +146,7 @@ def place_user_ship(game_board, available_sizes):
                         else:
                             print(
                                 "Invalid input. Please enter 'H' for"
-                                "horizontalor 'V' for vertical."
+                                "horizontal or 'V' for vertical."
                             )
 
                 while True:
@@ -188,12 +188,12 @@ def place_user_ship(game_board, available_sizes):
                             return ship_size, orientation, coordinates
                         else:
                             print(
-                                "Cannot place ship here. It goes out of bounds"
+                                "Cannot place ship here. It goes out of bounds "
                                 "or overlaps another ship."
                             )
                     else:
                         print(
-                            "Invalid input. Please enter coordinates in the"
+                            "Invalid input. Please enter coordinates in the "
                             "format 'Letter (A-H) followed by Number (1-8)'."
                         )
             else:
