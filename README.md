@@ -146,7 +146,7 @@ List of some issues that arose:
 * The play again function has a message that asks the user if they would like to play again but this was stuck in loop, fixed this by using `elif` statement with `break`.
 
 * Some print statements were being broken up halfway through a word due to the size of the terminal. I fixed this by using two print statements.
- 
+
 <br>
 
 # Deployment
@@ -190,7 +190,7 @@ Code for random computer choice inspired by : https://www.codecademy.com/resourc
 <br>
 [Am I Responsive](https://ui.dev/amiresponsive)
 <br>
-[ACSII Art](https://www.textartcopy.com/simple-text-art.html)
+[ACSII Art](https://fsymbols.com/text-art/)
 
 ## Languages and modules used
 
