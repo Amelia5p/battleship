@@ -1,7 +1,7 @@
 # Battleship
 
 ## Site Overview
-Battleship is a two-player game where players aim to sink each other's ships by guessing their locations on an 8x8 grid. This version of the classic game has you competing against the computer in a grid-based battle to be the last one standing!
+Battleship is a two-player game where players aim to sink each other's ships by guessing their locations on an 8x8 grid. This version of the classic game has you competing against the computer, the game ends when one player sinks all of the opponent's ships.
 
 Live site: https://battleship123-ebf95228255d.herokuapp.com/
 
